@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+
+table.table thead th {
+	background-color:#999;
+	color:#fff;
+}
+
+div.page-info b {
+	color:#369;
+}
