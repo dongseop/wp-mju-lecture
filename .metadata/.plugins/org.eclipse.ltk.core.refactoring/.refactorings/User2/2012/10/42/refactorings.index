@@ -1,0 +1,24 @@
+1350370886465	Move 1 resources to 'WebContent'
+1350370888854	Move 1 resources to 'WebContent'
+1350370891075	Move 1 resources to 'WebContent'
+1350370893590	Move 1 resources to 'build'
+1350370895299	Move 1 resources to 'WebContent'
+1350370898605	Move 1 resources to 'WebContent'
+1350370901194	Move 1 resources to 'User2'
+1350370905951	Move 1 resources to 'WebContent'
+1350370908251	Move 1 resources to 'WebContent'
+1350370910475	Move 1 resources to 'WebContent'
+1350388390136	Rename field 'numUsers'
+1350388411582	Rename field 'listUsers'
+1350388422698	Rename local variable 'listUsers'
+1350388456145	Rename type 'UserPage'
+1350395055131	Rename type 'User'
+1350396082670	Rename local variable 'viewName'
+1350400972605	Delete element
+1350401022507	Delete element
+1350401025265	Delete element
+1350405477804	Delete element
+1350407337466	Extract method 'isRegisterMode'
+1350408280028	Rename resource 'update.jsp'
+1350408289751	Delete element
+1350409428950	Delete element

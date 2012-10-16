@@ -1,0 +1,5 @@
+INDEX VERSION 1.122+E:\Projects\wp-mju-lecture\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3005870480.index
+1094464611.index
+2554799974.index
+3627378137.index

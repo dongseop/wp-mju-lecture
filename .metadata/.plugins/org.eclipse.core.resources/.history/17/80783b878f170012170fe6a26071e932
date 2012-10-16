@@ -1,0 +1,105 @@
+package kr.ac.mju.dislab.user2;
+
+import java.sql.*;
+import java.util.*;
+
+import javax.naming.*;
+import javax.sql.*;
+
+public class UserDAO {
+	private static final String dbUrl = "jdbc:mysql://localhost:3306/web2012";
+	private static final String dbUser = "web";
+	private static final String dbPassword = "asdf";
+	
+
+	public static DataSource getDataSource() {
+		Context initCtx = null;
+		Context envCtx = null;
+		DataSource ds = null;
+		try {
+			// Obtain our environment naming context
+			initCtx = new InitialContext();
+			envCtx = (Context) initCtx.lookup("java:comp/env");
+
+			// Look up our data source
+			ds = (DataSource) envCtx.lookup("jdbc/WebDB");
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ds;
+	}
+	
+	public static PageResult<User> getPage(int page, int numItemsInPage) {
+		PageResult<User> result = new PageResult<User>(numItemsInPage);
+		List<User> users = new ArrayList<User>();
+		
+		if (page <= 0) {
+			page = 1;
+		}
+		
+		DataSource ds = getDataSource();
+		
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;		
+		
+		int startPos = (page - 1) * numItemsInPage;
+		
+		try {
+			conn = ds.getConnection();
+			stmt = conn.createStatement();
+			
+			// users 테이블: user 수 페이지수 개산
+	 		rs = stmt.executeQuery("SELECT COUNT(*) FROM users ORDER BY name");
+			rs.next();
+			
+			int numItems = rs.getInt(1);
+			result.setNumItems(numItems);
+			result.setNumPages((int) Math.ceil((double)numItems / (double)numItemsInPage));
+			rs.close();
+			rs = null;
+			stmt.close();
+			stmt = null;
+			
+	 		// users 테이블 SELECT
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM users ORDER BY name LIMIT " + startPos + ", " + numItemsInPage);
+			
+			while(rs.next()) {
+				users.add(new User(rs.getInt("id"),
+							rs.getString("userid"),
+							rs.getString("name"),
+							rs.getString("pwd"),
+							rs.getString("email"),
+							rs.getString("country"),
+							rs.getString("gender"),
+							rs.getString("favorites")
+						));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;		
+	}
+	
+	public static User findById(int id){
+		return null;
+	}
+	
+	public static boolean create(User user) {
+		
+		return true;
+	}
+	
+	public static boolean update(User user) {
+		return true;
+	}
+	
+	public static boolean remove(int id) {
+		return true;
+	}
+}

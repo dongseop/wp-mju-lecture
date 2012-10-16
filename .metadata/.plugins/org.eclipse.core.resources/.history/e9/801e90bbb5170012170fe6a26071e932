@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>회원목록</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/base.css" rel="stylesheet">
+	<script src="js/jquery-1.8.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<jsp:include page="share/header.jsp">
+  <jsp:param name="current" value="Sign Up"/>
+</jsp:include>
+ 	<div class="container">
+    <c:forEach var="msg" items="${errorMsgs}">
+      <li><c:out value="${msg}"/></li>
+    </c:forEach> 	
+ 		<% if (errorMsgs.size() > 0) { %>
+ 			<div class="alert alert-error">
+ 				<h3>Errors:</h3>
+ 				<ul>
+ 					<% for(String msg: errorMsgs) { %>
+ 						<li><%=msg %></li>
+ 					<% } %>
+ 				</ul>
+ 			</div>
+		 	<div class="form-action">
+		 		<a onclick="history.back();" class="btn">뒤로 돌아가기</a>
+		 	</div>
+	 	<% } else if (result == 1) { %>
+	 		<div class="alert alert-success">
+	 			<b><%= name %></b>님 정보가 수정되었습니다.
+	 		</div>
+		 	<div class="form-action">
+		 		<a href="index.jsp" class="btn">목록으로</a>
+		 	</div>
+	 	<%}%>
+ 	</div>
+</body>
+</html>

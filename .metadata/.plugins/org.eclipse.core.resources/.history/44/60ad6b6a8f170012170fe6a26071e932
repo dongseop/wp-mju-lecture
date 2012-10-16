@@ -1,0 +1,43 @@
+package kr.ac.mju.dislab.user2;
+
+import java.util.List;
+
+public class PageResult<T> {
+	private List<T> list;
+	private int numItemsInPage;
+	private int numItems;
+	private int numPages;
+	
+	public List<T> getListUsers() {
+		return list;
+	}
+	public PageResult(int numItemsInPage) {
+		super();
+		this.numItemsInPage = numItemsInPage;
+		this.numItems = 0;
+		this.numPages = 0;
+	}
+	
+	public List<T> getList() {
+		return list;
+	}
+	
+	public int getNumItemsInPage() {
+		return numItemsInPage;
+	}
+
+	public int getNumitems() {
+		return numItems;
+	}
+	
+	public void setNumItems(int numItems) {
+		this.numItems = numItems;
+		this.numPages = (int) Math.ceil((double)numItems / (double)numItemsInPage);
+	}
+	public int getNumPages() {
+		return numPages;
+	}
+	public void setNumPages(int numPages) {
+		this.numPages = numPages;
+	}
+}
