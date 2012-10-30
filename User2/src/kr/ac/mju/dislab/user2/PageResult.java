@@ -2,7 +2,9 @@ package kr.ac.mju.dislab.user2;
 
 import java.util.*;
 
-public class PageResult<T> {
+public class PageResult<T> implements java.io.Serializable{
+	private static final long serialVersionUID = -1826830567659349558L;
+	
 	private List<T> list;
 	private int numItemsInPage;
 	private int numItems;

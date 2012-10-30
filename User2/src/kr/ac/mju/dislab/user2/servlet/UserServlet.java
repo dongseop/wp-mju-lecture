@@ -1,8 +1,6 @@
 package kr.ac.mju.dislab.user2.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -14,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import kr.ac.mju.dislab.user2.*;
@@ -33,12 +30,23 @@ public class UserServlet extends HttpServlet {
         super();
     }
 
+
+	private int getIntFromParameter(String str, int defaultValue) {
+		int id;
+		
+		try {
+			id = Integer.parseInt(str);
+		} catch (Exception e) {
+			id = defaultValue;
+		}
+		return id;
+	}
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
-		List<String> errorMsgs = new ArrayList<String>();
 		String actionUrl = "";
 		boolean ret;
 		
@@ -98,15 +106,10 @@ public class UserServlet extends HttpServlet {
 		
 	}
 
-	private int getIntFromParameter(String str, int defaultValue) {
-		int id;
-		
-		try {
-			id = Integer.parseInt(str);
-		} catch (Exception e) {
-			id = defaultValue;
-		}
-		return id;
+
+	private boolean isRegisterMode(HttpServletRequest request) {
+		String method = request.getParameter("_method");
+		return method == null || method.equals("POST");
 	}
 
 	/**
@@ -131,7 +134,6 @@ public class UserServlet extends HttpServlet {
 		String favoriteStr = StringUtils.join(favorites, ",");
 		
 		List<String> errorMsgs = new ArrayList<String>();
-		int result = 0;
 		
 		if (isRegisterMode(request)) {
 			if (pwd == null || pwd.length() < 6) {
@@ -190,11 +192,6 @@ public class UserServlet extends HttpServlet {
 		request.setAttribute("errorMsgs", errorMsgs);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(actionUrl);
 		dispatcher.forward(request,  response);
-	}
-
-	private boolean isRegisterMode(HttpServletRequest request) {
-		String method = request.getParameter("_method");
-		return method == null || method.equals("POST");
 	}
 
 }

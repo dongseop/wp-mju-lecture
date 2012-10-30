@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="org.eclipse.ui.internal.dialogs.WorkbenchEditorsDialog">
+		<item value="0" key="sort"/>
+		<item value="false" key="allPersp"/>
+		<list key="bounds">
+			<item value="561"/>
+			<item value="212"/>
+			<item value="798"/>
+			<item value="552"/>
+		</list>
+		<list key="columns">
+			<item value="246"/>
+			<item value="493"/>
+		</list>
+	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
-		<item value="1440" key="dialogWidth"/>
-		<item value="850" key="dialogHeight"/>
+		<item value="1200" key="dialogWidth"/>
+		<item value="880" key="dialogHeight"/>
 		<list key="orderedProviders">
 		</list>
 		<list key="textArray">

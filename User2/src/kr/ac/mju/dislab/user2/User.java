@@ -5,7 +5,7 @@ import java.util.*;
 import org.apache.commons.lang3.StringUtils;
 
 public class User implements java.io.Serializable {
-	private static final long serialVersionUID = 4727193867638741387L;
+	private static final long serialVersionUID = 2193897931951340673L;
 	
 	private static final String[] cuntryNames = {"한국", "미국", "영국", "일본", "중국"};
 	private static final String[] idols = {"아이유", "카라", "소녀시대", "2NE1", "씨스타"};

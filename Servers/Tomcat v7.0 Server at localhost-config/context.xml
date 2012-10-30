@@ -29,7 +29,6 @@
     <!--
     <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
     -->
-    <!-- 
      <Resource name="jdbc/WebDB" 
               auth="Container" 
               type="javax.sql.DataSource" 
@@ -56,9 +55,11 @@
               driverClassName="com.mysql.jdbc.Driver"
               url="jdbc:mysql://localhost:3306/web2012"
               />
-    -->
+    <!-- 
      <Resource name="jdbc/WebDB" auth="Container" type="javax.sql.DataSource"
                maxActive="100" maxIdle="30" maxWait="10000"
                username="web" password="asdf" driverClassName="com.mysql.jdbc.Driver"
                url="jdbc:mysql://localhost:3306/web2012"/>
+               -->
+    
 </Context>
