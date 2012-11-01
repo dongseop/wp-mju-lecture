@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0">
+	<channel>
+		<title>RSS Example</title>
+		<description>This is an example of an RSS feed</description>
+		<lastBuildDate>Thu, 1 Dec 2011 19:30:00</lastBuildDate>
+		<pubData>Thu, 1 Dec 2011 19:30:00</pubData>
+
+		<item>
+			<title>Website renewal</title>
+			<link>http://ghost.mju.ac.kr</link>
+			<description>Data Engineering Laboratory Website renewal</description>
+			<pubData>Thu, 1 Dec 2011 19:30:00</pubData>
+		</item>
+		<item>
+			<title>[One for All-산업융합시대가 온다] 순천에 'IT 식물 공장'이 뜬다</title>
+			<link>http://www.etnews.com/201111250083</link>
+			<description>'이동식 모듈형' 공장으로 웹 기반 중앙 원격제어 통합 관제시스템을 통해 분산돼 있는 식물의 재배부터 모니터링까지 모두 가능하도록 개발된다.</description>
+			<pubData>Thu, 1 Dec 2011 19:30:00</pubData>
+		</item>
+	</channel>
+</rss>
+
+
+
