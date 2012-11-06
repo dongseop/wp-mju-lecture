@@ -12,4 +12,4 @@ wp-mju-lecture
 1. User2 : 사용자 관리 (등록, 수정, 변경) - Servlet을 이용한 MVC (Data Source, Bean 사용)
 1. Servers : Eclipse에서의 Tomcat 서버 설정을 위한 Server 셋팅
 1. RSSReader : Rss News feed reader 프로젝트
-1. Facebook-JSP_Test : Facebook-JSP를 이용하여 연동 프로젝트
+1. Facebook-JSP_Test : Facebook-JSP/Servlet를 이용하여 Server-side 연결 프로젝트(RestFB 사용)
