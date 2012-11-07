@@ -14,12 +14,12 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
 	<servlet>
-	    <servlet-name>FacebookLogin</servlet-name>
+	    <servlet-name>FBAuthServlet</servlet-name>
 	    <servlet-class>ac.mju.webprogramming.servlet.FBAuthServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	    <servlet-name>FacebookLogin</servlet-name>
-	    <url-pattern>/facebookLogin.do</url-pattern>
+	    <servlet-name>FBAuthServlet</servlet-name>
+	    <url-pattern>/FBAuthServlet.do</url-pattern>
 	</servlet-mapping>
   <context-param>
       <param-name></param-name>

@@ -21,7 +21,7 @@
 		<div style="margin-bottom:20px;" class="center">
 			
 		<!-- Facebook 접속 버튼 -->
-		  <a class="fb_button fb_button_large" id="btnLogin" href="facebookLogin.do" data-size="xlarge">
+		  <a class="fb_button fb_button_large" id="btnLogin" href="FBAuthServlet.do" data-size="xlarge">
 		    <span class="fb_button_text"> Log In</span>
 		  </a>
 		</div>

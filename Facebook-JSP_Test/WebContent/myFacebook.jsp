@@ -32,14 +32,16 @@
 	<jsp:include page="share/header.jsp"></jsp:include>
 	<div class="container">
 		<h1> Facebook Information </h1>
+		
+		<h3>Like Button</h3>
+		
 		<div class="well well-large">
-			<h5>Like Button</h5>
 			<div class="fb-like" data-href="${LikeInfo.url}" data-send="false" 
 			data-width="450" data-show-faces="true" data-font="tahoma"></div>
 		</div>
 		<hr></hr>
 		
-		<div class="alert alert-info"> My Facebook Information </div>
+		<h3> My Facebook Information </h3>
 		
 		<table class="table table-striped table-bordered">
 			<tr>
@@ -78,37 +80,37 @@
 	<div class="container">	
 			
 		<hr></hr>
-		<div class="alert alert-info"> My Facebook Friend List </div>
+		<h3> My Facebook Friend List </h3>
 		
-		<c:forEach var="listElement" items="${friends}" >
+		<c:forEach var="friend" items="${friends}" >
 				<table class="table table-striped table-bordered">
 					<tr>
 						<td rowspan="8" class="row-align">
-							<img src="https://graph.facebook.com/${listElement.id}/picture?type=large"  
+							<img src="https://graph.facebook.com/${friend.id}/picture?type=large"  
 							class="img-polaroid" />
 						</td>
-						<td>Name :</td><td>${listElement.name}</td>
+						<td>Name :</td><td>${friend.name}</td>
 					</tr>			
 					<tr>
-						<td>User name :</td><td>${listElement.username}</td>
+						<td>User name :</td><td>${friend.username}</td>
 					</tr>
 					<tr>
-						<td>Facebook Link :</td><td>${listElement.link}</td>
+						<td>Facebook Link :</td><td>${friend.link}</td>
 					</tr>
 					<tr>
-						<td>ID :</td><td>${listElement.id}</td>
+						<td>ID :</td><td>${friend.id}</td>
 					</tr>
 					<tr>
-						<td>First Name :</td><td>${listElement.firstname}</td>
+						<td>First Name :</td><td>${friend.firstname}</td>
 					</tr>
 					<tr>
-						<td>Last Name :</td><td>${listElement.lastname}</td>
+						<td>Last Name :</td><td>${friend.lastname}</td>
 					</tr>
 					<tr>
-						<td>Gender : </td><td>${listElement.gender}</td>
+						<td>Gender : </td><td>${friend.gender}</td>
 					</tr>
 					<tr>
-						<td>Birth Day :</td><td>${listElement.birthday}</td>
+						<td>Birth Day :</td><td>${friend.birthday}</td>
 					</tr>
 				</table>
 		</c:forEach>
