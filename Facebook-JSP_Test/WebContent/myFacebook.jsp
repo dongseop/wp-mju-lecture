@@ -6,13 +6,13 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<meta property="og:title" content="${ LikeInfo.title}" />
-	<meta property="og:site_name" content="${LikeInfo.sitename}" />
-	<meta property="og:app_id" content="${LikeInfo.appid}" />
-	<meta property="og:url" content="${LikeInfo.url}" />
-	<meta property="og:type" content="${LikeInfo.type}" />
-	<meta property="og:description" content="${LikeInfo.description}" />
-	<meta property="og:image" content="${LikeInfo.image}" />	
+	<meta property="og:title" content="MJU Web Programming" />
+	<meta property="og:site_name" content="Facebook-JSP Test Site" />
+	<meta property="og:app_id" content="${facebook.APPID}" />
+	<meta property="og:url" content="${facebook.SITEURL}" />
+	<meta property="og:type" content="blog" />
+	<meta property="og:description" content="좋아요 버튼에 담길 Site 설명" />
+	<meta property="og:image" content="http://117.17.158.82:8080/Facebook-JSP_Test/img/IU.jpg" />	
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/bootstrap.min.css" rel="stylesheet">			
 	<script src="js/bootstrap.min.js"></script>
@@ -26,7 +26,7 @@
 	  var js, fjs = d.getElementsByTagName(s)[0];
 	  if (d.getElementById(id)) return;
 	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/ko_KR/all.js#xfbml=1&appId=${LikeInfo.appid}";
+	  js.src = "//connect.facebook.net/ko_KR/all.js#xfbml=1&appId=${facebook.APPID}";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
 	<jsp:include page="share/header.jsp"></jsp:include>
@@ -36,7 +36,7 @@
 		<h3>Like Button</h3>
 		
 		<div class="well well-large">
-			<div class="fb-like" data-href="${LikeInfo.url}" data-send="false" 
+			<div class="fb-like" data-href="${facebook.SITEURL}/myFacebook.jsp" data-send="false" 
 			data-width="450" data-show-faces="true" data-font="tahoma"></div>
 		</div>
 		<hr></hr>
@@ -61,10 +61,10 @@
 				<td>ID :</td><td>${me.id}</td>
 			</tr>
 			<tr>
-				<td>First Name :</td><td>${me.firstname}</td>
+				<td>First Name :</td><td>${me.firstName}</td>
 			</tr>
 			<tr>
-				<td>Last Name :</td><td>${me.lastname}</td>
+				<td>Last Name :</td><td>${me.lastName}</td>
 			</tr>
 			<tr>
 				<td>Gender : </td><td>${me.gender}</td>
@@ -101,10 +101,10 @@
 						<td>ID :</td><td>${friend.id}</td>
 					</tr>
 					<tr>
-						<td>First Name :</td><td>${friend.firstname}</td>
+						<td>First Name :</td><td>${friend.firstName}</td>
 					</tr>
 					<tr>
-						<td>Last Name :</td><td>${friend.lastname}</td>
+						<td>Last Name :</td><td>${friend.lastName}</td>
 					</tr>
 					<tr>
 						<td>Gender : </td><td>${friend.gender}</td>

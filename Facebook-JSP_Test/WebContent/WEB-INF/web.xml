@@ -15,7 +15,7 @@
   </welcome-file-list>
 	<servlet>
 	    <servlet-name>FBAuthServlet</servlet-name>
-	    <servlet-class>ac.mju.webprogramming.servlet.FBAuthServlet</servlet-class>
+	    <servlet-class>kr.ac.mju.dislab.facebook.FBAuthServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 	    <servlet-name>FBAuthServlet</servlet-name>
