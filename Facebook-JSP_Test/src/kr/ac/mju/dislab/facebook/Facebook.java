@@ -35,8 +35,7 @@ public class Facebook{
 	}
 
 	public static Facebook getInstance(String code) throws IOException{
-		String accessToken = getAccessToken(code);
-		return new Facebook(accessToken);		
+		return new Facebook(getAccessToken(code));		
 	}
 	
 	// facebook에서 얻은 code로 access token 얻음

@@ -20,7 +20,6 @@ public class FBAuthServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String actionURL = "";
 		String code = request.getParameter("code"); 
 
 		request.setCharacterEncoding("UTF-8");
@@ -32,9 +31,7 @@ public class FBAuthServlet extends HttpServlet {
 		}
 		else{			
 			Facebook facebook = Facebook.getInstance(code); 
-			// View page 설정
-			actionURL = "myFacebook.jsp";
-
+			
 			// 현재 페이스북 유저와 친구의 정보를 가져온다.
 			User me = facebook.getCurrentUser();
 			List<User> friends = facebook.getFriends();
@@ -44,7 +41,8 @@ public class FBAuthServlet extends HttpServlet {
 			request.setAttribute("friends", friends);
 			request.setAttribute("facebook", facebook);
 
-			RequestDispatcher view = request.getRequestDispatcher(actionURL);
+			// View page 설정
+			RequestDispatcher view = request.getRequestDispatcher("myFacebook.jsp");
 			view.forward(request, response);
 		}
 	}	
