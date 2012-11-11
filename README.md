@@ -13,3 +13,4 @@ wp-mju-lecture
 1. Servers : Eclipse에서의 Tomcat 서버 설정을 위한 Server 셋팅
 1. RSSReader : Rss News feed reader 프로젝트
 1. Facebook-JSP_Test : Facebook-JSP/Servlet를 이용하여 Server-side 연결 프로젝트(RestFB 사용)
+1. AjaxAutocomplete : AJAX를 이용한 나라이름 자동완성 프로젝트
