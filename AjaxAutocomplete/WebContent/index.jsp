@@ -54,7 +54,7 @@ $(function() {
 	$('#country').keyup(function() {
 		// 입력창에 키가 눌러진 경우 이벤트 처리
 		// Ajax로 값을 전송
-		$.post('ContrySuggest', {query: $('#country').val()}, 
+		$.post('ContrySuggestServlet', {query: $('#country').val()}, 
 			function(data) {
 				$('#suggest_box').html(data).show();
 			}
