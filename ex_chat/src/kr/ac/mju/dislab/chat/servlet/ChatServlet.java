@@ -52,9 +52,9 @@ public class ChatServlet extends HttpServlet {
 
 		//Chat 내역을 JSON 형태로 변환하여 나타냄.
 		try {
-			List<Chat> chatList = ChatDAO.getChatList(last);
+			List<Message> chatList = ChatDAO.getChatList(last);
 			JSONArray jsonList=new JSONArray();
-			for(Chat chat : chatList)
+			for(Message chat : chatList)
 			{
 				jsonList.add(chat.toJSON(current_name));
 				last=chat.getId();
@@ -64,17 +64,12 @@ public class ChatServlet extends HttpServlet {
 			resultObj.put("msgs", jsonList);
 			resultObj.put("last", last);
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			resultObj.put("ERROR", e.getMessage());
 
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			resultObj.put("ERROR", e.getMessage());
-
-		}
+		} 
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().print(resultObj.toJSONString());
@@ -88,7 +83,7 @@ public class ChatServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//메세지 전송 
 		boolean ret = false;
-		Chat chat = new Chat();
+		Message msg = new Message();
 
 		request.setCharacterEncoding("UTF-8");
 
@@ -102,17 +97,17 @@ public class ChatServlet extends HttpServlet {
 
 		if (name != "")
 		{
-			chat.setName(name);
+			msg.setName(name);
 		}
 		if (message != "")
 		{
-			chat.setMessage(message);
+			msg.setContent(message);
 		}
 
 		try 
 		{
 			//message를 저장.
-			ret=ChatDAO.sendMessage(chat);
+			ret=ChatDAO.sendMessage(msg);
 
 			if (ret != true) 
 			{					
