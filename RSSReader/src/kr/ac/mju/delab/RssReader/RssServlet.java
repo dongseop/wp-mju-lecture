@@ -22,15 +22,12 @@ public class RssServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String url = request.getParameter("url");
+		String[] url = request.getParameterValues("url");
 		String actionUrl = "";
 		
 		Rss rss;
 		try {
 			rss = new Rss(url);
-			request.setAttribute("title", rss.getTitle());
-			request.setAttribute("desc", rss.getDesc());
-			request.setAttribute("link", rss.getLink());
 			request.setAttribute("feedlist", rss.getFeedlist());
 			actionUrl = "rss.jsp";
 			

@@ -4,18 +4,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Rss News Feed Example</title>
+<script src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#addUrl").click(function(){
+		$("#rssUrl").append('<input type="text" class="url" size="100" name="url"/><br>');
+	});
+});
+</script>
 </head>
 <body>
 	<div>
 		<form action="RssServlet.do" method="post">
 			<fieldset>
 				<label>RSS URL :</label> 
-				<input type="text" id="url" size="100" name="url" />
-				<input type="submit" value="전송" /><br>
+				<div id="rssUrl">
+					<input type="text" class="url" size="100" name="url" value="http://www.hani.co.kr/rss"/><br>
+					<input type="text" class="url" size="100" name="url" value="http://rss.ohmynews.com/rss/top.xml"/><br>
+					<input type="text" class="url" size="100" name="url" value="http://myhome.chosun.com/rss/www_section_rss.xml"/><br>
+				</div>
+				<input type="button" id="addUrl"value="추가" />
+				<input type="submit" value="전송" />
 			</fieldset>
-			네이버 뉴스 RSS URL : http://newscast.naver.com/presscenter/rssPress.nhn?pressId=029<br>
-			한겨레 뉴스 RSS URL : http://www.hani.co.kr/rss<br>
 		</form>
 	</div>
 </body>

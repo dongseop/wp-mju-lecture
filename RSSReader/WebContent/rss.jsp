@@ -3,9 +3,9 @@
 <%@ page language="java" contentType="text/xml; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<channel>
-		<title>${title}</title>
-		<link>${link}</link>
-		<description>${desc}</description>
+		<title>RSS News Aggregator</title>
+		<link>http://tahiti.mju.ac.kr</link>
+		<description>뉴스 통합 예제</description>
 		<languagr>ko</languagr>
 		<generator>JSP/XML</generator>
 		<c:forEach var="feedlist" items="${feedlist}">
