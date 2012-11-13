@@ -19,9 +19,9 @@ public class ChatDAO {
 		// Look up our data source
 		return (DataSource) envCtx.lookup("jdbc/WebDB");
 	}
-	public static ArrayList<Chat> getChatList(int last) throws SQLException, NamingException {
+	public static ArrayList<Message> getChatList(int last) throws SQLException, NamingException {
 		
-		ArrayList<Chat> chatList = new ArrayList<Chat>();
+		ArrayList<Message> chatList = new ArrayList<Message>();
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -53,7 +53,7 @@ public class ChatDAO {
 
 			while (rs.next()) {
 				
-				Chat chat = new Chat(rs.getInt("id"), rs.getString("name"), rs.getString("message"));
+				Message chat = new Message(rs.getInt("id"), rs.getString("name"), rs.getString("message"));
 				chat.setTime(rs.getTimestamp("created_at"));
 				chatList.add(chat);
 				
@@ -69,7 +69,7 @@ public class ChatDAO {
 		
 	
 	}
-	public static boolean sendMessage(Chat chat) throws SQLException, NamingException
+	public static boolean sendMessage(Message msg) throws SQLException, NamingException
 	{
 		int result;
 		Connection conn = null;
@@ -84,8 +84,8 @@ public class ChatDAO {
 			// 질의 준비
 			
 			stmt = conn.prepareStatement("INSERT INTO chats(name, message) VALUES (?, ?);");
-			stmt.setString(1, chat.getName());
-			stmt.setString(2, chat.getMessage());
+			stmt.setString(1, msg.getName());
+			stmt.setString(2, msg.getContent());
 			
 			// 수행
 			result = stmt.executeUpdate();
