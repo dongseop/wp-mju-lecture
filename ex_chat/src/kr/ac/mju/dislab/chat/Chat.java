@@ -1,6 +1,8 @@
 package kr.ac.mju.dislab.chat;
 import java.util.*;
 
+import org.json.simple.JSONObject;
+
 public class Chat implements java.io.Serializable{
 	private String name;
 	private String message;
@@ -49,6 +51,19 @@ public class Chat implements java.io.Serializable{
 	public void setTime(Date time)
 	{
 		this.time=time;
+	}
+	//json 형태로 출력
+	public JSONObject toJSON(String current_name)
+	{
+	
+		JSONObject jobj = new JSONObject();
+		jobj.put("name",getName());
+		jobj.put("message", getMessage());
+		jobj.put("time",getTimeString());
+		jobj.put("id", getId());
+		jobj.put("mine",  (current_name != null && current_name.equals(getName())) ? "mine":"");
+		
+		return jobj;
 	}
 
 }
