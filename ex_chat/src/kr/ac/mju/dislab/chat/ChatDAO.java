@@ -1,13 +1,12 @@
 package kr.ac.mju.dislab.chat;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.*;
 import javax.sql.*;
 
 public class ChatDAO {
-	
-	
 	public static DataSource getDataSource() throws NamingException {
 		Context initCtx = null;
 		Context envCtx = null;
@@ -19,9 +18,10 @@ public class ChatDAO {
 		// Look up our data source
 		return (DataSource) envCtx.lookup("jdbc/WebDB");
 	}
-	public static ArrayList<Message> getChatList(int last) throws SQLException, NamingException {
+	
+	public static List<Message> getChatList(int last) throws SQLException, NamingException {
 		
-		ArrayList<Message> chatList = new ArrayList<Message>();
+		List<Message> msgList = new ArrayList<Message>();
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -33,18 +33,15 @@ public class ChatDAO {
 			conn = ds.getConnection();
 			
 			// 질의 준비
-			
 			if (last >= 0) {
 				// last 이후의 모든 메시지
 				stmt = conn.prepareStatement("SELECT * FROM chats WHERE id > ? ;");
 				stmt.setInt(1,  last);
-				
 			} else {
 				// 마지막 10개의 메시지만..
 				stmt = conn.prepareStatement("SELECT * FROM "
 						+"(SELECT * FROM chats ORDER BY id DESC LIMIT 100 ) t " 
 						+"ORDER BY id ;");
-				
 			}
 
 			
@@ -52,11 +49,9 @@ public class ChatDAO {
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				
-				Message chat = new Message(rs.getInt("id"), rs.getString("name"), rs.getString("message"));
-				chat.setTime(rs.getTimestamp("created_at"));
-				chatList.add(chat);
-				
+				Message msg = new Message(rs.getInt("id"), rs.getString("name"), 
+								rs.getString("message"), rs.getTimestamp("created_at"));
+				msgList.add(msg);		
 			}	
 		} finally {
 			// 무슨 일이 있어도 리소스를 제대로 종료
@@ -65,7 +60,7 @@ public class ChatDAO {
 			if (conn != null) try{conn.close();} catch(SQLException e) {}
 		}
 		
-		return chatList;
+		return msgList;
 		
 	
 	}

@@ -30,45 +30,44 @@ public class ChatServlet extends HttpServlet {
 	 */
 	public ChatServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		//메세지 수신 
-		HttpSession session=request.getSession(true);
-		String current_name="";
+		HttpSession session = request.getSession(true);
+		String current_name = "";
 
-		//session에서 name 값 읽어옴 
-		if(session != null && session.getAttribute("name") != null)
-			current_name=(String) session.getAttribute("name").toString();
-
-		int last = Integer.parseInt(request.getParameter("last"));
+		if(session != null && session.getAttribute("name") != null) {
+			current_name = session.getAttribute("name").toString();
+		}
+		
+		int last = -1;
+		
+		try {
+			last = Integer.parseInt(request.getParameter("last"));
+		} catch(NumberFormatException e) {}
 
 		JSONObject resultObj = new JSONObject();
 
 		//Chat 내역을 JSON 형태로 변환하여 나타냄.
 		try {
 			List<Message> chatList = ChatDAO.getChatList(last);
-			JSONArray jsonList=new JSONArray();
-			for(Message chat : chatList)
-			{
+			JSONArray jsonList = new JSONArray();
+			for(Message chat : chatList) {
 				jsonList.add(chat.toJSON(current_name));
-				last=chat.getId();
 			}
-
-			resultObj.put("size", (int)chatList.size());
+			if (chatList.size() > 0) {
+				last = chatList.get(chatList.size() - 1).getId();
+			}
+			resultObj.put("size", chatList.size());
 			resultObj.put("msgs", jsonList);
 			resultObj.put("last", last);
-
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			resultObj.put("ERROR", e.getMessage());
-
 		} 
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
@@ -80,52 +79,29 @@ public class ChatServlet extends HttpServlet {
 	 */
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		//메세지 전송 
 		boolean ret = false;
-		Message msg = new Message();
-
+		
 		request.setCharacterEncoding("UTF-8");
 
 		String name = request.getParameter("name");
-		String message = request.getParameter("message");
-
+		String content = request.getParameter("content");
 
 		//세션을 생성하여 name 에 현재 작성한 사람의 이름을 저장함.
 		HttpSession session=request.getSession(true);
 		session.setAttribute("name", name.toString());
 
-		if (name != "")
-		{
-			msg.setName(name);
-		}
-		if (message != "")
-		{
-			msg.setContent(message);
-		}
-
-		try 
-		{
+		try {
 			//message를 저장.
-			ret=ChatDAO.sendMessage(msg);
-
-			if (ret != true) 
-			{					
+			if (ChatDAO.sendMessage(new Message(name, content))) {					
+				response.getWriter().write("ok");
+			} else {
 				response.getWriter().write("메세지 전송에 실패했습니다..");
 			}
-			else
-			{
-				response.getWriter().write("ok");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block				
+		} catch (Exception e) {
 			response.getWriter().write(e.getMessage());
 
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			response.getWriter().write(e.getMessage());	
-		}
-
+		} 
 	}
 
 }

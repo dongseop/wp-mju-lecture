@@ -79,11 +79,10 @@
 			<div id="messages"></div>
 			<div id="error" style="display: none"></div>
 			<form id="chat_form">
-				<input id="name" type="text" size="10" name="name"
-					value="${current_name}"> <input id="msg" type="text"
-					name="msg" size="50"> <input id="send" type="button"
-					value="send"> <img src="images/ajax-loader.gif"
-					style="display: none;" id="loading">
+				<input id="name" type="text" size="10" value="${current_name}"> 
+				<input id="msg" type="text" size="50"> 
+				<input id="send" type="button" value="send"> 
+				<img src="images/ajax-loader.gif" style="display: none;" id="loading">
 			</form>
 		</div>
 	</body>
@@ -109,7 +108,7 @@
 										.append(
 												"<span class='name'>" + item.name
 														+ "</span>").append(
-												item.message).append(
+												item.content).append(
 												"<span class='time'>" + item.time
 														+ "</span>").appendTo(
 												"#messages");
@@ -139,7 +138,7 @@
 				// Ajax로 글 내용 전달
 				$.post('ChatServlet', {
 					name : $("#name").val(),
-					message : $("#msg").val()
+					content : $("#msg").val()
 				}, function(data) {
 					if (data.indexOf("ERROR") != -1) {
 						// 에러가 있으면 내용 출력

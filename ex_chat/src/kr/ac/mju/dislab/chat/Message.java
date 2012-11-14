@@ -1,70 +1,56 @@
 package kr.ac.mju.dislab.chat;
+
+import java.sql.Timestamp;
 import java.util.*;
 
 import org.json.simple.JSONObject;
 
-public class Message implements java.io.Serializable{
+public class Message implements java.io.Serializable {
+	private static final long serialVersionUID = 7116948049833402318L;
 	private String name;
 	private String content;
 	private int id;
 	private Date time;
-	
-	public Message()
-	{
-		
-	}
-	public Message(int id, String name, String message)
-	{
-		super();
-		this.id=id;
+
+	public Message(String name, String content) {
 		this.name = name;
-		this.setContent(message);
-		
+		this.content = content;
 	}
-	
+
+	public Message(int id, String name, String content, Timestamp time) {
+		this.id = id;
+		this.name = name;
+		this.content = content;
+		this.time = time;
+	}
+
 	public String getName() {
 		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public String getContent() {
 		return content;
 	}
-	public void setContent(String content) {
-		this.content = content;
+
+	public void setTime(Date time) {
+		this.time = time;
 	}
-	public Date getTime()
-	{
-		return this.time;
-	}
-	public String getTimeString()
-	{
-		return time.toString();
-	}
-	public void setTime(Date time)
-	{
-		this.time=time;
-	}
-	//json 형태로 출력
-	public JSONObject toJSON(String current_name)
-	{
-	
-		JSONObject jobj = new JSONObject();
-		jobj.put("name",getName());
-		jobj.put("message", getContent());
-		jobj.put("time",getTimeString());
-		jobj.put("id", getId());
-		jobj.put("mine",  (current_name != null && current_name.equals(getName())) ? "mine":"");
-		
-		return jobj;
+
+	// json 형태로 출력
+	public JSONObject toJSON(String current_name) {
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("name", getName());
+		jsonObj.put("message", getContent());
+		jsonObj.put("time", time.toString());
+		jsonObj.put("id", getId());
+		jsonObj.put("mine", (current_name != null && 
+				current_name.equals(getName())) ? "mine" : "");
+
+		return jsonObj;
 	}
 
 }
