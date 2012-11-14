@@ -20,22 +20,18 @@ public class RssServlet extends HttpServlet {
         super();
     }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String[] url = request.getParameterValues("url");
-		String actionUrl = "";
 		
-		Rss rss;
-		try {
-			rss = new Rss(url);
-			request.setAttribute("feedlist", rss.getFeedlist());
-			actionUrl = "rss.jsp";
-			
-		} catch (JDOMException e) {
-			actionUrl = "rssError.jsp";
-			e.printStackTrace();
+		String[] urlList = {"xxxxx", "xxxx", "xxxx"};
+		List<News> newsList = new ArrayList<News>)();
+		for(String url : urlList) {
+			Feed feed = new Feed(url);
+			feed.getNews(newsList);
 		}
 		
+		request.setAttribute("news", newsList);
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher(actionUrl);
 		dispatcher.forward(request, response);
 	}

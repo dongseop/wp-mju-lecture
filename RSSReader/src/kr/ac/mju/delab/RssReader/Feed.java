@@ -1,6 +1,6 @@
 package kr.ac.mju.delab.RssReader;
 
-public class Feed implements java.io.Serializable{
+public class News implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String title;
