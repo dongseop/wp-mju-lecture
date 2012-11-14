@@ -44,7 +44,7 @@ public class Message implements java.io.Serializable {
 	public JSONObject toJSON(String current_name) {
 		JSONObject jsonObj = new JSONObject();
 		jsonObj.put("name", getName());
-		jsonObj.put("message", getContent());
+		jsonObj.put("content", getContent());
 		jsonObj.put("time", time.toString());
 		jsonObj.put("id", getId());
 		jsonObj.put("mine", (current_name != null && 
