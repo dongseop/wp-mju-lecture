@@ -34,14 +34,16 @@
  	    <a href="user?op=update&id=${user.id}" class="btn btn-primary">수정</a>
       <a href="#" class="btn btn-danger" data-action="delete" data-id="${user.id}" >삭제</a>
     </div>
-		<script>
-		  $("a[data-action='delete']").click(function() {
-		    if (confirm("정말로 삭제하시겠습니까?")) {
-		      location = 'user?op=delete&id=' + $(this).attr('data-id');
-		    }
-		    return false;
-		  });
-		</script>  
+	<script>
+	  $(function{
+	    $("a[data-action='delete']").click(function() {
+	      if (confirm("정말로 삭제하시겠습니까?")) {
+	        location = 'user?op=delete&id=' + $(this).attr('data-id');
+	      }
+	      return false;
+	    });
+	  });
+	</script>  
   </div>
 </body>
 </html>
