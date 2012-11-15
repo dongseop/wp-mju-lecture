@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko"> 
+<head>
+<meta charset="utf-8">
+<title>컴공과 교수님 주소록</title> 
+<script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=8ceef45ec914ac5c1d930136f9f0665faf951292"></script>
+<script type="text/javascript" src='jquery-1.8.2.min.js'></script>
+<style type="text/css">
+html {background:#fff;	font: 12px/18px "맑은 고딕", "Malgun Gothic", "굴림";}
+h1 { font: 22px/28px "맑은 고딕", "Malgun Gothic", "굴림";
+	font-weight:bold;
+}
+div.infowindow {
+  max-height:550px;
+	overflow:auto;	margin:0;	padding:10px;
+}
+div#map {width:600px;height:600px;float:left;}
+div#list {width:1200px;margin:0;padding:0;background:silver;}
+div#rv {float:left;width:600px; height:600px;background:silver;}
+div.photo {
+	width:120px; 	height:130px; 	margin:0; 	padding:0; 	float:left;
+}
+div.photo img {opacity:0.3;filter:alpha(opacity=30)}
+div.photo img.selected {opacity:1;filter:alpha(opacity=100)  }
+</style>
+<script type="text/javascript" src="data.js"></script> 
+<script type="text/javascript"> 
+  var map;
+	var infoWin;
+	var centerPos;
+	var rv;
+	var rvclient;
+	
+	function unselectAll() {
+		$(data).each(function() {
+			this.unselect();
+		});
+		infoWin.close();
+	}
+	
+  $(function() {
+		var x = 0, y = 0;
+		var count = 0;
+		var lastone;
+    var latlng = new daum.maps.LatLng(37.222275, 127.1862923);
+    map = new daum.maps.Map(document.getElementById("map"),  {
+      center: latlng,
+      mapTypeId: daum.maps.MapTypeId.ROADMAP
+    });
+		var zoomControl = new daum.maps.ZoomControl();
+		map.addControl(new daum.maps.MapTypeControl(), daum.maps.ControlPosition.TOPRIGHT);
+		map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+		infoWin = new daum.maps.InfoWindow({
+			content: "<div class='infowindow' style='width:200px;height:300px;'><b>test</b><img src=''></div>"
+		});
+		daum.maps.event.addListener(map, 'click', function(event){infoWin.close();
+			alert(event.latLng.toString());
+		});		
+		$(data).each(function() {
+			this.no = ++count;
+			var me = this;
+			x += this.position[0];
+			y += this.position[1];
+			this.selected = false;
+			$("<div class='photo'><img id='img"+this.no+"' src='"+this.photo+"' alt='"+this.name+"'></div>").appendTo("#list");
+			
+			// 마커 등록
+			this.marker = new daum.maps.Marker({
+				position: new daum.maps.LatLng(this.position[0], this.position[1]),
+			});
+			this.marker.setMap(map);
+			
+			// 선택된 경우
+			this.select = function() {
+				unselectAll();
+				infoWin.setContent("<div class='infowindow'><b>"+this.name+"</b><br/>"+this.addr+"</div>");
+				infoWin.open(map, this.marker);
+				map.setCenter(this.marker.getPosition());
+				map.setLevel(5);
+				this.selected = true;
+				this.highlight(true);
+				rvclient.getNearestPanoId(this.marker.getPosition(), 100000, function(id) {
+					if (id) {
+						rv.setPanoId(id);
+						$("#rv object").show();
+					} else {
+						$("#rv object").hide();
+					}
+				});
+			};
+			this.unselect = function() {
+				this.selected = false;
+				this.highlight(false);
+			}
+			this.highlight = function(highlight) {
+				if (highlight) 
+					$("#img"+this.no).addClass("selected");
+				else
+					$("#img"+this.no).removeClass("selected");
+			}
+			daum.maps.event.addListener(this.marker, 'click', function() {
+				me.select();
+			});
+			$("#img"+this.no).click(function() {
+				me.select();
+			});			
+		});
+		centerPos = new daum.maps.LatLng(x/count, y/count)
+		
+		$("#reset").click(function() {
+			map.setCenter(centerPos);
+			map.setLevel(9);
+			unselectAll();
+		});
+		$("#reset").click();
+		
+		// 로드뷰를 하나 생성함.
+		rv = new daum.maps.Roadview(document.getElementById("rv"));
+		rvclient = new daum.maps.RoadviewClient();
+  });
+</script> 
+</head> 
+<body> 
+<div style="width:1200px;margin:auto;padding:10px;">
+	<h1>명지대학교 컴퓨터공학 교수님들은 어디에 살고 계실까?
+	<input type="button" value="초기화" id="reset">
+	</h1>
+	<div id="map"></div> 
+	<div id="rv"></div>
+	<div id="list"></div>
+	로드뷰는 이미지를 로딩하는데 다소 시간이 걸릴 수 있습니다. 
+	
+</div>
+</body> 
+</html> 
