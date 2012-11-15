@@ -5,7 +5,8 @@ import java.util.List;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.*;
 
-public class Feed {
+public class Feed implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private String url;
 
 	public Feed(String url) {
