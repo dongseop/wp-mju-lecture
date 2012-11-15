@@ -14,3 +14,5 @@ wp-mju-lecture
 1. FeedAggregator : News Feed Aggregator 프로젝트
 1. Facebook-JSP_Test : Facebook-JSP/Servlet를 이용하여 Server-side 연결 프로젝트(RestFB 사용)
 1. AjaxAutocomplete : AJAX를 이용한 나라이름 자동완성 프로젝트
+1. ex_chat : AJAX를 이용한 채팅 프로젝트
+1. Machup-Map : Google Map, Daum Map Mashup  예제
