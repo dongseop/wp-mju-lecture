@@ -69,11 +69,13 @@
 <jsp:include page = "share/footer.jsp" />
 </body>
 <script>
+$(function{
 	$("a[data-action='delete']").click(function() {
 		if (confirm("정말로 삭제하시겠습니까?")) {
 			location = 'user?op=delete&id=' + $(this).attr('data-id');
 		}
 		return false;
 	});
+});
 </script>
 </html>
