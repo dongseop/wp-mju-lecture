@@ -61,7 +61,7 @@
 		stmt = conn.createStatement();
 		
 		// users 테이블: user 수 페이지수 개산
- 		rs = stmt.executeQuery("SELECT COUNT(*) FROM users ORDER BY name");
+ 		rs = stmt.executeQuery("SELECT COUNT(*) FROM users");
 		rs.next();
 		numItems = rs.getInt(1);
 		numPages = (int) Math.ceil((double)numItems / (double)numInPage);
