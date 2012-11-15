@@ -1,6 +1,7 @@
-package kr.ac.mju.delab.RssReader;
+package kr.ac.mju.dislab.feedAggregator;
 
 import java.io.IOException;
+import java.util.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,28 +12,29 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jdom2.JDOMException;
 
-
-@WebServlet("/RssServelet")
-public class RssServlet extends HttpServlet {
+@WebServlet("/FeedServlet")
+public class FeedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public RssServlet() {
+
+    public FeedServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		String[] urlList = {"http://hani.co.kr/rss/lead/", "http://rss.ohmynews.com/rss/top.xml", "http://myhome.chosun.com/rss/www_section_rss.xml"};
+		List<News> newsList = new ArrayList<News>();
 		
-		String[] urlList = {"xxxxx", "xxxx", "xxxx"};
-		List<News> newsList = new ArrayList<News>)();
 		for(String url : urlList) {
 			Feed feed = new Feed(url);
-			feed.getNews(newsList);
-		}
-		
+			try {
+				newsList = feed.getNews(newsList);				
+			} catch (JDOMException e) {
+				e.printStackTrace();
+			}			
+		}		
 		request.setAttribute("news", newsList);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher(actionUrl);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("feed.jsp");
 		dispatcher.forward(request, response);
 	}
 }
