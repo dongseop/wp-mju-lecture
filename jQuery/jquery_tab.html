@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko"> 
+<head>
+<meta charset="utf-8">
+  <title>jQuery Test</title>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <style type="text/css">
+    .tab{padding:0 0 35px 0;}
+    .tab>ul{width:400px;position:relative; margin:0; padding:0; list-style:none; border-bottom:2px solid #315593; font-size:12px; }
+    .tab>ul:after{ content:""; display:block; clear:both;}  
+    .tab>ul>li { float:left; margin-right:1px; background:#4CB1E5;}
+    .tab>ul>li>a{ float:left; text-decoration:none;}
+    .tab>ul>li>a>span{ display:inline-block; padding:6px 25px 6px 25px; color:#fff;}
+    .tab>ul>li>div{ width:380px; position:absolute; top:30px; left:0; list-style:none; border:0; margin:0; padding:10px;background:#eee;}
+    .tab>ul>li.selected {background-color:#315593; margin-top:1px; }
+  </style>
+</head>
+<body>
+<div class="tab">
+<ul>
+  <li><a href="#"><span>공지사항</span></a>
+    <div>
+      <ul>
+        <li>이런 이런 공지사항</li>
+        <li>이런 이런 공지사항</li>
+        <li>이런 이런 공지사항</li>
+        <li>이런 이런 공지사항</li>
+      </ul>
+    </div>
+  </li>
+  <li><a href="#"><span>오늘의 뉴스</span></a>
+    <div>
+<p>[연예팀] SBS 수목드라마 '대물'에서 여성 최초 대통령 서혜림 역으로 열연 중인 고현정에 캐릭터 변질에 대해 논란이 일고 있다.
+<p>최근 '대물' 시청자 게시판에는 서혜림의 캐릭터가 변질됐다는 의견들이 등장하고 있어 눈길을 끌고 있다. 
+<p>극 초반 물불 안 가리는 다혈질 성격은 온데간데 없고 국회의원 보궐선거에 나선 후에는 "잘 몰라서요", "잘 부탁드려요"라는 대사를 연발하며 캐릭터 변질에 대한 시청자들의 질타를 받고 있다. 
+    </div>
+  </li>
+  <li><a href="#"><span>오늘의 이미지</span></a>
+    <div>
+      <img src="http://musicimg.cyworld.com/ALBUM/015/063/15063659.JPG">
+    </div>
+  </li>
+</ul>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+
+$(function($){
+  var tab = $('.tab');
+  tab.find('li>a').click(function() {
+    $(".tab>ul>li").removeClass('selected');
+    $(".tab>ul>li>div").hide();
+    $(this).parent().addClass('selected')
+    $(this).parent().find('div').show();
+  });
+  $(".tab li>a:first").click();
+});
+</script>
