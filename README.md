@@ -7,6 +7,7 @@ wp-mju-lecture
 주요 내용
 ---------
 
+1. jQuery: jQuery 실습 예제
 1. Exercise1 : 폼 입력 다루기 & 세션을 이용한 사용자 인증 
 1. User1 : 사용자 관리 (등록, 수정, 변경) - JDBC를 이용한 기본 CRUD 프로그래밍1
 1. User2 : 사용자 관리 (등록, 수정, 변경) - Servlet을 이용한 MVC (Data Source, Bean 사용)
