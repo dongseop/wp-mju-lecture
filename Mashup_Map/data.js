@@ -10,7 +10,7 @@
 		{name:"장혁수", addr:"경기 용인시 처인구 해곡동 49-1 라호",  position: [37.1798837, 127.2737156]
 , photo:"https://myiweb.mju.ac.kr/upload/adm/aps/19921310.gif"},
 		{name:"최성운", addr:"서울 강남구 대치2동 미도아파트 211-204호",  position:[37.493981, 127.069161424]
-, photo:"https://myiweb.mju.ac.kr/upload/adm/aps/19931007.gif"},,
+, photo:"https://myiweb.mju.ac.kr/upload/adm/aps/19931007.gif"},
 		{name:"홍석원", addr:"경기 수원시 영통구 망포동 LG동수원자이아파트 303-1305호",  position:[37.2366876, 127.0566934]
 , photo:"https://myiweb.mju.ac.kr/upload/adm/aps/19951352.gif"},
 		{name:"전종훈", addr:"경기 성남시 분당구 정자동 아이파크분당아파트 102-1501호",  position:[37.3711555, 127.1051706]

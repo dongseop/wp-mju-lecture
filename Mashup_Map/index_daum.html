@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>컴공과 교수님 주소록</title> 
-<script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=d8cab7ffd7dbeed7668b58c56cbd44d7baae65cb"></script>
+<script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=d9f4e67db298ecc8e966b5058586b779e041f680"></script>
 <script type="text/javascript" src='jquery-1.8.2.min.js'></script>
 <style type="text/css">
 html {background:#fff;	font: 12px/18px "맑은 고딕", "Malgun Gothic", "굴림";}
@@ -79,7 +79,7 @@ div.photo img.selected {opacity:1;filter:alpha(opacity=100)  }
 				map.setLevel(5);
 				this.selected = true;
 				this.highlight(true);
-				rvclient.getNearestPanoId(this.marker.getPosition(), 100000, function(id) {
+				rvclient.getNearestPanoId(this.marker.getPosition(), 100, function(id) {
 					if (id) {
 						rv.setPanoId(id);
 						$("#rv object").show();
