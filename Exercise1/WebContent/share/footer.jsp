@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <footer class="footer">
   <div class="container" style="border-top:1px solid #DDD; padding:10px 0;">
-    &copy; Web Programming 2012, Dongseop Kwon
+    &copy; Web Programming 2014, Dongseop Kwon
     <ul style="color:#aaa">
 			<%
 			 Enumeration<String> headers = request.getHeaderNames();
