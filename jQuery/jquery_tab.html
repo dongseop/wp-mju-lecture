@@ -4,7 +4,6 @@
 <meta charset="utf-8">
   <title>jQuery Test</title>
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <style type="text/css">
     .tab{padding:0 0 35px 0;}
     .tab>ul{width:400px;position:relative; margin:0; padding:0; list-style:none; border-bottom:2px solid #315593; font-size:12px; }
@@ -12,8 +11,20 @@
     .tab>ul>li { float:left; margin-right:1px; background:#4CB1E5;}
     .tab>ul>li>a{ float:left; text-decoration:none;}
     .tab>ul>li>a>span{ display:inline-block; padding:6px 25px 6px 25px; color:#fff;}
-    .tab>ul>li>div{ width:380px; position:absolute; top:30px; left:0; list-style:none; border:0; margin:0; padding:10px;background:#eee;}
-    .tab>ul>li.selected {background-color:#315593; margin-top:1px; }
+    .tab>ul>li>div{ 
+      width:380px; 
+      position:absolute; 
+      top:30px; 
+      left:0; 
+      list-style:none; 
+      border:0; 
+      margin:0; 
+      padding:10px;
+      background:#eee;
+      display: none;
+    }
+    .tab>ul>li.selected {background-color:#315593;}
+    .tab>ul>li.selected>div {display:block;}
   </style>
 </head>
 <body>
@@ -46,14 +57,10 @@
 </body>
 </html>
 <script type="text/javascript">
-
-$(function($){
-  var tab = $('.tab');
-  tab.find('li>a').click(function() {
-    $(".tab>ul>li").removeClass('selected');
-    $(".tab>ul>li>div").hide();
+$(function(){
+  $('.tab li>a').click(function() {
+    $(this).parents(".tab").find("li").removeClass('selected');
     $(this).parent().addClass('selected')
-    $(this).parent().find('div').show();
   });
   $(".tab li>a:first").click();
 });
