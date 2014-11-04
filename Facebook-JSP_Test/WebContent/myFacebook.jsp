@@ -22,13 +22,23 @@
 </head>
 <body>
 	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/ko_KR/all.js#xfbml=1&appId=${facebook.APPID}";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
+	<script>
+	  window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '1507416342842319',
+	      xfbml      : true,
+	      version    : 'v2.2'
+	    });
+	  };
+	
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "//connect.facebook.net/en_US/sdk.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+	</script>
 	<jsp:include page="share/header.jsp"></jsp:include>
 	<div class="container">
 		<h1> Facebook Information </h1>
@@ -52,9 +62,6 @@
 				<td>Name :</td><td>${me.name}</td>
 			</tr>			
 			<tr>
-				<td>User name :</td><td>${me.username}</td>
-			</tr>
-			<tr>
 				<td>Facebook Link :</td><td>${me.link}</td>
 			</tr>
 			<tr>
@@ -69,14 +76,9 @@
 			<tr>
 				<td>Gender : </td><td>${me.gender}</td>
 			</tr>
-			<tr>
-				<td>Birth Day :</td><td>${me.birthday}</td>
-			</tr>
 		</table>
-		
 	</div>
-		
-		
+
 	<div class="container">	
 			
 		<hr></hr>
@@ -92,9 +94,6 @@
 						<td>Name :</td><td>${friend.name}</td>
 					</tr>			
 					<tr>
-						<td>User name :</td><td>${friend.username}</td>
-					</tr>
-					<tr>
 						<td>Facebook Link :</td><td>${friend.link}</td>
 					</tr>
 					<tr>
@@ -108,9 +107,6 @@
 					</tr>
 					<tr>
 						<td>Gender : </td><td>${friend.gender}</td>
-					</tr>
-					<tr>
-						<td>Birth Day :</td><td>${friend.birthday}</td>
 					</tr>
 				</table>
 		</c:forEach>
