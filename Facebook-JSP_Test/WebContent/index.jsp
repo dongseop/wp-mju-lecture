@@ -11,27 +11,27 @@
 	<jsp:include page="share/header.jsp"></jsp:include>
 	<div class="container">
 		<h1> Facebook Information </h1>
-		
+			
 		<fb:login-button id="loginButton" scope="public_profile,user_friends" onlogin="checkLoginState();">
-	</fb:login-button>
+		</fb:login-button>
 
-	<h3>Like Button</h3>
-	<div class="well well-large">
-		<div class="fb-like" data-href="index.jsp" data-send="false" 
-		data-width="450" data-show-faces="true" data-font="tahoma"></div>
-	</div>
-	<hr></hr>
+		<h3>Like Button</h3>
+		<div class="well well-large">
+			<div class="fb-like" data-href="index.jsp" data-send="false" 
+			data-width="450" data-show-faces="true" data-font="tahoma"></div>
+		</div>
+		<hr></hr>
 
-	<h3> My Facebook Information </h3>
-	<div id="me" class="container">
-	</div>
+		<h3> My Facebook Information </h3>
+		<div id="me" class="container">
+		</div>
 
-	<hr></hr>
-	<h3> My Facebook Friend List </h3>
-	<div id="friend" class="container">	
+		<hr></hr>
+		<h3> My Facebook Friend List </h3>
+		<div id="friend" class="container">	
+		</div>
 	</div>
 	<jsp:include page="share/footer.jsp"></jsp:include>
-	
 <script type="text/template" id="template-table">
 	<table class="table table-striped table-bordered">
 		<tr>
@@ -69,11 +69,11 @@
 window.fbAsyncInit = function() {
 	FB.init({
 		appId      : '800287103325790',
-	cookie     : true,  // enable cookies to allow the server to access 
-						// the session
-	xfbml      : true,  // parse social plugins on this page
-	version    : 'v2.2' // use version 2.2
-});
+		cookie     : true,  // enable cookies to allow the server to access 
+							// the session
+		xfbml      : true,  // parse social plugins on this page
+		version    : 'v2.2' // use version 2.2
+	});
 	FB.getLoginStatus(function(response) {
 		statusChangeCallback(response);
 	});
@@ -98,7 +98,6 @@ function statusChangeCallback(response) {
 		init();
 	}
 }
-
 // This function is called when someone finishes with the Login
 // Button.
 function checkLoginState() {
@@ -106,8 +105,6 @@ function checkLoginState() {
 		statusChangeCallback(response);
 	});
 }
-
-
 function init(){
 	$('loginButton').show();
 	$('#me').empty();
@@ -150,6 +147,5 @@ function addData(data,table){
 	$(table).find('.last_name').text(data.last_name);
 	$(table).find('.gender').text(data.gender);
 }
-
 </script>
 
