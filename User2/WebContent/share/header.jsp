@@ -16,12 +16,13 @@
 %>    
 	<!-- Navbar
   ================================================== -->
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="brand" href="./index.jsp">DISLAB</a>
-        <div class="nav-collapse collapse">
-          <ul class="nav">
+  <div class="container navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="./index.jsp">DISLAB</a>
+      </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
           <%
           	for(String[] menuItem : menu) {
           		if (currentMenu != null && currentMenu.equals(menuItem[1])) {
@@ -37,8 +38,7 @@
           </ul>
         </div>
       </div>
-    </div>
   </div>
-  <div class="container" style="padding-top:50px">
+  <div class="container container-fluid" style="padding-top:50px">
 		<h1>Exercise: JSP &amp; Database</h1>
  	</div>

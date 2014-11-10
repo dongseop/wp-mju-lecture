@@ -19,8 +19,8 @@
  		<div class="alert alert-success">
  			${msg}
  		</div>
-	 	<div class="form-action">
-	 		<a href="user" class="btn">목록으로</a>
+	 	<div>
+	 		<a href="user" class="btn btn-default">목록으로</a>
 	 	</div>
  	</div>
 </body>

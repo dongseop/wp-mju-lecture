@@ -8,3 +8,7 @@ table.table thead th {
 div.page-info b {
 	color:#369;
 }
+
+.pagination_centered{
+	text-align: center;
+}

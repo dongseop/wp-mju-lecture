@@ -17,7 +17,7 @@
 
   <div class="container">
  		<div class="row">
-			<div class="span12 page-info">
+			<div class="col-md-12 page-info">
 				<div class="pull-left">
 					Total <b>${users.numItems }</b> users 
 				</div>
@@ -46,8 +46,8 @@
 					<td><c:out value="${user.genderStr}"/></td>
 					<td><c:out value="${user.country}"/></td>
 					<td><a href="user?op=update&id=${user.id}"
-						class="btn btn-mini">modify</a> <a href="#"
-						class="btn btn-mini btn-danger" data-action="delete"
+						class="btn btn-default btn-xs">modify</a> <a href="#"
+						class="btn btn-default btn-xs btn-danger" data-action="delete"
 						data-id="${user.id}">delete</a></td>
 				</tr>
 			</c:forEach>
@@ -62,17 +62,17 @@
       <jsp:param name="numPages" value="${users.numPages}"/>
     </jsp:include>
 
-		<div class="form-action">
-			<a href="user?op=signup" class="btn btn-primary">Sign Up</a>
+		<div class="form-group">
+			<a href="user?op=signup" class="btn btn-default btn-primary">Sign Up</a>
 		</div>	 	
   </div>
 <jsp:include page = "share/footer.jsp" />
 </body>
 <script>
-$(function{
+$(function(){
 	$("a[data-action='delete']").click(function() {
 		if (confirm("정말로 삭제하시겠습니까?")) {
-			location = 'user?op=delete&id=' + $(this).attr('data-id');
+			location = 'delete.jsp?id=' + $(this).attr('data-id');
 		}
 		return false;
 	});

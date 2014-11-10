@@ -6,8 +6,8 @@
 <c:set var="startPage" value="${param.startPage}" />
 <c:set var="endPage" value="${param.endPage}" />
 <c:set var="numPages" value="${param.numPages}" />
-<div class="pagination pagination-centered">
-	<ul>
+<nav class="pagination_centered">
+	<ul  class="pagination">
     <c:choose>
       <c:when test="${1 >= currentPage}">
         <li class="disabled"><a href="#">&laquo;</a></li>
@@ -37,4 +37,4 @@
       </c:otherwise>
     </c:choose>
 	</ul>
-</div>
+</nav>

@@ -29,10 +29,10 @@
       </ul>
     </div>      
 
-	  <div class="form-actions">
-	    <a href="user" class="btn">목록으로</a>
- 	    <a href="user?op=update&id=${user.id}" class="btn btn-primary">수정</a>
-      <a href="#" class="btn btn-danger" data-action="delete" data-id="${user.id}" >삭제</a>
+	  <div class="form-group">
+	    <a href="user" class="btn btn-default">목록으로</a>
+ 	    <a href="user?op=update&id=${user.id}" class="btn btn-default btn-primary">수정</a>
+      <a href="#" class="btn btn-default btn-danger" data-action="delete" data-id="${user.id}" >삭제</a>
     </div>
 	<script>
 	  $(function{

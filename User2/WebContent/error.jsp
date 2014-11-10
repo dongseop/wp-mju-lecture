@@ -16,7 +16,7 @@
   <jsp:param name="current" value="Sign Up"/>
 </jsp:include>
   <div class="container">
-    <div class="alert alert-error">
+    <div class="alert alert-danger">
       <c:out value="${error}"/>
       
       <c:if test="${errorMsg != null || errorMsg.size() > 0 }">
