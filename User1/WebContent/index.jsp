@@ -179,7 +179,7 @@
 				if (conn != null) try {conn.close();} catch (SQLException e) {}
 			}
 		%>
-		<div class="form-action">
+		<div class="form-group">
 			<a href="signup.jsp" class="btn btn-primary">Sign Up</a>
 		</div>
 	</div>
