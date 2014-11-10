@@ -1,0 +1,14 @@
+.row-align{
+	text-align: center;
+	vertical-align: middle;
+}
+
+.table .row-align{
+	text-align: center;
+	vertical-align: middle;
+}
+
+.center{
+	width : 90px;
+	margin : 0 auto;
+}
