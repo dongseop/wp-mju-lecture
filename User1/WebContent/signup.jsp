@@ -105,47 +105,47 @@
 			  		out.println("<input type='hidden' name='id' value='"+id+"'>");
 			  	}
 			  	%>
-				<div class="control-group">
-					<label class="control-label" for="userid">ID</label>
-					<div class="controls">
-						<input type="text" name="userid" value="<%=userid%>">
+				<div class="form-group ">
+					<label class="col-sm-2 control-label" for="userid">ID</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" name="userid" value="<%=userid%>">
 					</div>
 				</div>
 
-				<div class="control-group">
-					<label class="control-label" for="name">Name</label>
-					<div class="controls">
-						<input type="text" placeholder="홍길동" name="name" value="<%=name%>">
+				<div class="form-group ">
+					<label class="col-sm-2 control-label" for="name">Name</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" placeholder="홍길동" name="name" value="<%=name%>">
 					</div>
 				</div>
 
 				<% if (id <= 0) { %>
 					<%-- 신규 가입일 때만 비밀번호 입력창을 나타냄 --%>
-					<div class="control-group">
-						<label class="control-label" for="pwd">Password</label>
-						<div class="controls">
-							<input type="password" name="pwd">
+					<div class="form-group ">
+						<label class="col-sm-2 control-label" for="pwd">Password</label>
+						<div class="col-sm-3">
+							<input type="password" class="form-control" name="pwd">
 						</div>
 					</div>
 	
-					<div class="control-group">
-						<label class="control-label" for="pwd_confirm">Password Confirmation</label>
-						<div class="controls">
-							<input type="password" name="pwd_confirm">
+					<div class="form-group ">
+						<label class="col-sm-2 control-label" for="pwd_confirm">Password Confirmation</label>
+						<div class="col-sm-3">
+							<input type="password" class="form-control" name="pwd_confirm">
 						</div>
 					</div>
 				<% } %>
-				<div class="control-group">
-					<label class="control-label" for="email">E-mail</label>
-					<div class="controls">
-						<input type="email" placeholder="hong@abc.com" name="email" value="<%=email%>">
+				<div class="form-group ">
+					<label class="col-sm-2 control-label" for="email">E-mail</label>
+					<div class="col-sm-3">
+						<input type="email" class="form-control" placeholder="hong@abc.com" name="email" value="<%=email%>">
 					</div>
 				</div>
 
-				<div class="control-group">
-					<label class="control-label">Country</label>
-					<div class="controls">
-						<select name="country">
+				<div class="form-group ">
+					<label class="col-sm-2 control-label">Country</label>
+					<div class="col-sm-3">
+						<select name="country" class="form-control">
 							<% 
 							for(String countryName: countries) {
 								out.print("<option");
@@ -159,27 +159,27 @@
 					</div>
 				</div>
 
-				<div class="control-group">
-					<label class="control-label">Gender</label>
-					<div class="controls">
-						<% for(String[] genderOption : genders) { %> 
-							<label class="radio"> 
+				<div class="form-group ">
+					<label class="col-sm-2 control-label">Gender</label>
+					<% for(String[] genderOption : genders) { %> 
+						<div  class="col-sm-offset-2 radio">
+							<label> 
 							  <input type="radio" value="<%=genderOption[0] %>" name="gender"
 							  <% if (genderOption[0].equals(gender)) { out.print("checked");} %>
 							  > 
 							  <%=genderOption[1] %>
 							</label>
-						<% } %> 
-					</div>
+						</div>
+					<% } %> 
 				</div>
 
-				<div class="control-group">
-					<label class="control-label">Favorites</label>
-					<div class="controls">
-						<% 
+				<div class="form-group ">
+					<label class=" col-sm-2 control-label">Favorites</label>
+					<% 
 						for (String idolName: idols) {
-							%>
-							<label class="checkbox"> 
+					%>
+						<div class="col-sm-offset-2 checkbox">
+							<label> 
 							  <input type="checkbox" name="favorites" value="<%=idolName%>"
 							  <% 
 							  	if (favoriteList != null && favoriteList.contains(idolName)) { 
@@ -189,18 +189,19 @@
 							  >
 							  <%=idolName %>
 							</label> 
-							<%				
-						}						
-						%>
-					</div>
+						</div>
+					<%				
+						}			
+					%>
+					
 				</div>
 
-				<div class="form-actions">
-					<a href="index.jsp" class="btn">목록으로</a>
+				<div class="form-group">
+					<a href="index.jsp" class="col-sm-offset-2 btn btn-default">목록으로</a>
 					<% if (id <= 0) { %>
-						<input type="submit" class="btn btn-primary" value="가입">
+						<input type="submit" class="btn btn-default btn-primary" value="가입">
 					<% } else { %>
-						<input type="submit" class="btn btn-primary" value="수정">
+						<input type="submit" class="btn btn-default btn-primary" value="수정">
 					<% } %>
 				</div>
 			</fieldset>

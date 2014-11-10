@@ -91,7 +91,7 @@
 
  	<div class="container">
  		<% if (errorMsgs.size() > 0) { %>
- 			<div class="alert alert-error">
+ 			<div class="alert alert-danger">
  				<h3>Errors:</h3>
  				<ul>
  					<% for(String msg: errorMsgs) { %>
@@ -99,14 +99,14 @@
  					<% } %>
  				</ul>
  			</div>
-		 	<div class="form-action">
+		 	<div class="form-group">
 		 		<a onclick="history.back();" class="btn">뒤로 돌아가기</a>
 		 	</div>
 	 	<% } else if (result == 1) { %>
 	 		<div class="alert alert-success">
 	 			<b><%= name %></b>님 등록해주셔서 감사합니다.
 	 		</div>
-		 	<div class="form-action">
+		 	<div class="form-group">
 		 		<a href="index.jsp" class="btn">목록으로</a>
 		 	</div>
 	 		

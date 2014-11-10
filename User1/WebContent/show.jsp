@@ -107,11 +107,11 @@
     </div>      
 <% } %>
   
-	  <div class="form-actions">
-	    <a href="index.jsp" class="btn">목록으로</a>
+	  <div class="form-group">
+	    <a href="index.jsp" class="btn btn-default">목록으로</a>
 	    <% if (id > 0) { %>
-  	    <a href="signup.jsp?id=<%=id %>" class="btn btn-primary">수정</a>
-	     <a href="#" class="btn btn-danger" data-action="delete" data-id="<%=id %>" >삭제</a>
+  	    <a href="signup.jsp?id=<%=id %>" class="btn btn-default btn-primary">수정</a>
+	     <a href="#" class="btn btn-default btn-danger" data-action="delete" data-id="<%=id %>" >삭제</a>
 	    <% } %>
 	  </div>
 		<script>

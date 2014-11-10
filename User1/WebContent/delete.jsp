@@ -57,7 +57,7 @@
 </jsp:include>
  	<div class="container">
  		<% if (errorMsg != null) { %>
- 			<div class="alert alert-error">
+ 			<div class="alert alert-danger">
  				<h3>Errors:</h3>
  				<%= errorMsg %>
  			</div>
@@ -66,8 +66,8 @@
 	 			사용자 정보를 삭제하였습니다.
 	 		</div>
 	 	<%}%>
-	 	<div class="form-action">
-	 		<a href="index.jsp" class="btn">목록으로</a>
+	 	<div class="form-group">
+	 		<a href="index.jsp" class="btn btn-default">목록으로</a>
 	 	</div>
  	</div>
 </body>
