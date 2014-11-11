@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.sql.*" import="java.util.*" 
-    %>
+	pageEncoding="UTF-8" import="java.sql.*" import="java.util.*"%>
 <%
 	// 현재 메뉴
 	String errorMsg = null;
@@ -40,35 +39,33 @@
 		if (stmt != null) try{stmt.close();} catch(SQLException e) {}
 		if (conn != null) try{conn.close();} catch(SQLException e) {}
 	}
-%>    
+%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>회원목록</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/base.css" rel="stylesheet">
-	<script src="js/jquery-1.8.2.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+<title>회원목록</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/base.css" rel="stylesheet">
+<script src="js/jquery-1.8.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<jsp:include page="share/header.jsp">
-  <jsp:param name="current" value="Sign Up"/>
-</jsp:include>
- 	<div class="container">
- 		<% if (errorMsg != null) { %>
- 			<div class="alert alert-danger">
- 				<h3>Errors:</h3>
- 				<%= errorMsg %>
- 			</div>
-	 	<% } else { %>
-	 		<div class="alert alert-success">
-	 			사용자 정보를 삭제하였습니다.
-	 		</div>
-	 	<%}%>
-	 	<div class="form-group">
-	 		<a href="index.jsp" class="btn btn-default">목록으로</a>
-	 	</div>
- 	</div>
+	<jsp:include page="share/header.jsp">
+		<jsp:param name="current" value="Sign Up" />
+	</jsp:include>
+	<div class="container">
+		<% if (errorMsg != null) { %>
+		<div class="alert alert-danger">
+			<h3>Errors:</h3>
+			<%= errorMsg %>
+		</div>
+		<% } else { %>
+		<div class="alert alert-success">사용자 정보를 삭제하였습니다.</div>
+		<%}%>
+		<div class="form-group">
+			<a href="index.jsp" class="btn btn-default">목록으로</a>
+		</div>
+	</div>
 </body>
 </html>

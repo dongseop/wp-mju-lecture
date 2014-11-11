@@ -1,175 +1,175 @@
 <!DOCTYPE html>
 <html lang="ko"> 
 <head>
-<meta charset="utf-8">
-<title>컴공과 교수님 주소록</title> 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.9&sensor=false" type="text/javascript"></script>
-<script type="text/javascript" src='jquery-1.8.2.min.js'></script>
-<style type="text/css">
-html {background:#fff;}
-h1 {
-font: 22px/28px "맑은 고딕", "Malgun Gothic", "굴림";
-font-weight:bold;
-}
-div.infowindow {
-	font: 12px/18px "맑은 고딕", "Malgun Gothic", "굴림";
-  max-height:550px;
-	overflow:auto;
-	margin:0;
-	padding:0;
-}
-div#map {width:1200px;height:600px;float:left;}
-div#list {float:left;width:1200px;margin:0;padding:0;background:silver;}
-div.photo {
-	width:120px;
-	height:130px;
-	margin:0;
-	padding:0;
-	float:left;
-}
-div.photo img {opacity:0.3;filter:alpha(opacity=30)}
-div.photo img.selected {opacity:1;filter:alpha(opacity=100)  }
-</style>
-<script type="text/javascript" src="data.js"></script> 
-<script type="text/javascript"> 
-	// 맵에 올릴 아이콘 이미지 생성
-	var gYellowIcon = new google.maps.MarkerImage(
-		"http://labs.google.com/ridefinder/images/mm_20_yellow.png",
-		new google.maps.Size(12, 20),
-		new google.maps.Point(0, 0),
-		new google.maps.Point(6, 20));
-	var gRedIcon = new google.maps.MarkerImage(
-		"http://labs.google.com/ridefinder/images/mm_20_red.png",
-		new google.maps.Size(12, 20),
-		new google.maps.Point(0, 0),
-		new google.maps.Point(6, 20));
-	var gSmallShadow = new google.maps.MarkerImage(
-		"http://labs.google.com/ridefinder/images/mm_20_shadow.png",
-		new google.maps.Size(22, 20),
-		new google.maps.Point(0, 0),
-		new google.maps.Point(6, 20));	
-		
-  var map;
-	var infoWin;
-	var centerPos;
-	
-	// 모든 마커를 선택하지 않은 것으로 변경
-	function unselectAll() {
-		$(data).each(function() {
-			this.unselect();
-		});
-		infoWin.close();
-	}
-	
-  function initialize() {
-		// 초기화
-		var x = 0, y = 0;
-		var count = 0;
-		var lastone;
-		
-		// 임시로 맵을 하나 만든다.
-    var latlng = new google.maps.LatLng(37.222275, 127.1862923);
-    var myOptions = {
-      zoom: 11,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+    <meta charset="utf-8">
+    <title>컴공과 교수님 주소록</title> 
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.9&sensor=false" type="text/javascript"></script>
+    <script type="text/javascript" src='jquery-1.8.2.min.js'></script>
+    <style type="text/css">
+    html {background:#fff;}
+    h1 {
+        font: 22px/28px "맑은 고딕", "Malgun Gothic", "굴림";
+        font-weight:bold;
     }
-    map = new google.maps.Map(document.getElementById("map"), myOptions);
-		
-		// 임시로 정보창을 하나 만든다.
-		infoWin = new google.maps.InfoWindow({
-			content: "<div class='infowindow' style='width:200px;height:300px;'><b>test</b><img src=''></div>"
-		});
-		
-		// 맵에서 아무곳이나 클릭하면 정보창을 닫는다.
-		google.maps.event.addListener(map, 'click', function(event){
-			infoWin.close();	
-		});		
-		
-		// 데이터의 각 항목에 대하여
-		$(data).each(function() {
-			this.no = ++count; 				// 데이터의 no를 1부터 차례로 지정
-			this.selected = false; 		// 초기값은 선택 안된 것으로
-			
-			// this를 사용할 수 없는 경우를 대비하여 me에 임시 저장
-			var me = this;
-			
-			// 전체 데이터의 중간 위치를 알기 위하여...
-			x += this.position[0];
-			y += this.position[1];
-			
-			// #list에 사진을 하나 추가
-			$("<div class='photo'><img id='img"+this.no+"' src='"+this.photo+"'></div>").appendTo("#list");
-			
-			// 마커를 하나 생성
-			this.marker = new google.maps.Marker({
-				position: new google.maps.LatLng(this.position[0], this.position[1]),
-				map: map, 
-				icon: gYellowIcon, shadow: gSmallShadow, 
-				title:  this.name
-			});
-			
-			// 이 데이터를 선택하였을 경우 실행될 함수
-			this.select = function() {
-				unselectAll();
-				infoWin.setContent("<div class='infowindow'><b>"+this.name+"</b><br/>"+this.addr+"</div>");
-				infoWin.open(map, this.marker);
-				map.panTo(this.marker.getPosition());
-				this.selected = true;
-				this.highlight(true);
-			};
-			
-			// 이 데이터가 선택 해제 되었을 경우 실행될 함수
-			this.unselect = function() {
-				this.selected = false;
-				this.highlight(false);
-			}
-			
-			// 이 데이터의 선택 여부에 따라 icon 색깔/사진의 투명도 조정
-			this.highlight = function(highlight) {
-				this.marker.setOptions({icon: highlight ? gRedIcon : gYellowIcon});
-				if (highlight) 
-					$("#img"+this.no).addClass("selected");
-				else
-					$("#img"+this.no).removeClass("selected");
-			}
-			
-			// 이 데이터의 마커를 선택하면 select함수를 호출하도록 지정
-			google.maps.event.addListener(this.marker, 'click', function() {
-				me.select();	// 여기서는 this가 이벤트이므로 this대신 me를 사용
-			});
-			
-			// 교수님 사진을 선택하였을 경우 처리
-			$("#img"+this.no).click(function() {
-				me.select();
-			});			
-		});
-		
-		// 전체 데이터의 중심값
-		centerPos = new google.maps.LatLng(x/count, y/count)
-		
-		// 초기화 버튼을 누르면 맵을 중심으로 옮기고 선택 해제
-		$("#reset").click(function() {
-			map.panTo(centerPos);
-			map.setZoom(11);
-			unselectAll();
-		});
-		
-		// 초기화를 한번 실행해 줌.
-		$("#reset").click();
-  };
+    div.infowindow {
+        font: 12px/18px "맑은 고딕", "Malgun Gothic", "굴림";
+        max-height:550px;
+        overflow:auto;
+        margin:0;
+        padding:0;
+    }
+    div#map {width:1200px;height:600px;float:left;}
+    div#list {float:left;width:1200px;margin:0;padding:0;background:silver;}
+    div.photo {
+        width:120px;
+        height:130px;
+        margin:0;
+        padding:0;
+        float:left;
+    }
+    div.photo img {opacity:0.3;filter:alpha(opacity=30)}
+    div.photo img.selected {opacity:1;filter:alpha(opacity=100)  }
+    </style>
+    <script type="text/javascript" src="data.js"></script> 
+    <script type="text/javascript"> 
+    // 맵에 올릴 아이콘 이미지 생성
+    var gYellowIcon = new google.maps.MarkerImage(
+        "http://labs.google.com/ridefinder/images/mm_20_yellow.png",
+        new google.maps.Size(12, 20),
+        new google.maps.Point(0, 0),
+        new google.maps.Point(6, 20));
+    var gRedIcon = new google.maps.MarkerImage(
+        "http://labs.google.com/ridefinder/images/mm_20_red.png",
+        new google.maps.Size(12, 20),
+        new google.maps.Point(0, 0),
+        new google.maps.Point(6, 20));
+    var gSmallShadow = new google.maps.MarkerImage(
+        "http://labs.google.com/ridefinder/images/mm_20_shadow.png",
+        new google.maps.Size(22, 20),
+        new google.maps.Point(0, 0),
+        new google.maps.Point(6, 20));  
+    
+    var map;
+    var infoWin;
+    var centerPos;
+    
+    // 모든 마커를 선택하지 않은 것으로 변경
+    function unselectAll() {
+        $(data).each(function() {
+            this.unselect();
+        });
+        infoWin.close();
+    }
+    
+    function initialize() {
+        // 초기화
+        var x = 0, y = 0;
+        var count = 0;
+        var lastone;
+        
+        // 임시로 맵을 하나 만든다.
+        var latlng = new google.maps.LatLng(37.222275, 127.1862923);
+        var myOptions = {
+          zoom: 11,
+          center: latlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      map = new google.maps.Map(document.getElementById("map"), myOptions);
+      
+        // 임시로 정보창을 하나 만든다.
+        infoWin = new google.maps.InfoWindow({
+            content: "<div class='infowindow' style='width:200px;height:300px;'><b>test</b><img src=''></div>"
+        });
+        
+        // 맵에서 아무곳이나 클릭하면 정보창을 닫는다.
+        google.maps.event.addListener(map, 'click', function(event){
+            infoWin.close();    
+        });     
+        
+        // 데이터의 각 항목에 대하여
+        $(data).each(function() {
+            this.no = ++count;              // 데이터의 no를 1부터 차례로 지정
+            this.selected = false;      // 초기값은 선택 안된 것으로
+            
+            // this를 사용할 수 없는 경우를 대비하여 me에 임시 저장
+            var me = this;
+            
+            // 전체 데이터의 중간 위치를 알기 위하여...
+            x += this.position[0];
+            y += this.position[1];
+            
+            // #list에 사진을 하나 추가
+            $("<div class='photo'><img id='img"+this.no+"' src='"+this.photo+"'></div>").appendTo("#list");
+            
+            // 마커를 하나 생성
+            this.marker = new google.maps.Marker({
+                position: new google.maps.LatLng(this.position[0], this.position[1]),
+                map: map, 
+                icon: gYellowIcon, shadow: gSmallShadow, 
+                title:  this.name
+            });
+            
+            // 이 데이터를 선택하였을 경우 실행될 함수
+            this.select = function() {
+                unselectAll();
+                infoWin.setContent("<div class='infowindow'><b>"+this.name+"</b><br/>"+this.addr+"</div>");
+                infoWin.open(map, this.marker);
+                map.panTo(this.marker.getPosition());
+                this.selected = true;
+                this.highlight(true);
+            };
+            
+            // 이 데이터가 선택 해제 되었을 경우 실행될 함수
+            this.unselect = function() {
+                this.selected = false;
+                this.highlight(false);
+            }
+            
+            // 이 데이터의 선택 여부에 따라 icon 색깔/사진의 투명도 조정
+            this.highlight = function(highlight) {
+                this.marker.setOptions({icon: highlight ? gRedIcon : gYellowIcon});
+                if (highlight) 
+                    $("#img"+this.no).addClass("selected");
+                else
+                    $("#img"+this.no).removeClass("selected");
+            }
+            
+            // 이 데이터의 마커를 선택하면 select함수를 호출하도록 지정
+            google.maps.event.addListener(this.marker, 'click', function() {
+                me.select();    // 여기서는 this가 이벤트이므로 this대신 me를 사용
+            });
+            
+            // 교수님 사진을 선택하였을 경우 처리
+            $("#img"+this.no).click(function() {
+                me.select();
+            });         
+        });
 
-google.maps.event.addDomListener(window, 'load', initialize);
+        // 전체 데이터의 중심값
+        centerPos = new google.maps.LatLng(x/count, y/count)
+        
+        // 초기화 버튼을 누르면 맵을 중심으로 옮기고 선택 해제
+        $("#reset").click(function() {
+            map.panTo(centerPos);
+            map.setZoom(11);
+            unselectAll();
+        });
+        
+        // 초기화를 한번 실행해 줌.
+        $("#reset").click();
+    };
 
-</script> 
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script> 
 </head> 
 <body> 
-<div style="width:1200px;margin:auto;padding:10px;">
-	<h1>명지대학교 컴퓨터공학과 교수님들은 어디에 살고 계실까?
-	<input type="button" value="초기화" id="reset">
-	</h1>
-	<div id="map"></div> 
-	<div id="list"></div>
-</div>
+    <div style="width:1200px;margin:auto;padding:10px;">
+        <h1>명지대학교 컴퓨터공학과 교수님들은 어디에 살고 계실까?
+            <input type="button" value="초기화" id="reset">
+        </h1>
+        <div id="map"></div> 
+        <div id="list"></div>
+    </div>
 </body> 
 </html> 

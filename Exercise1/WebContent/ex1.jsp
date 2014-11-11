@@ -43,31 +43,31 @@
 				<div id="legend">
 					<legend>Sign up</legend>
 				</div>
-				<div class="control-group">
-					<label class="control-label" for="name">Name</label>
-					<div class="controls">
-						<input type="text" placeholder="홍길동" name="name">
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="name">Name</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" placeholder="홍길동" name="name">
 					</div>
 				</div>
 
-				<div class="control-group">
-					<label class="control-label" for="pwd">Password</label>
-					<div class="controls">
-						<input type="password" name="pwd">
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="pwd">Password</label>
+					<div class="col-sm-3">
+						<input type="password" class="form-control" name="pwd">
 					</div>
 				</div>
 
-				<div class="control-group">
-					<label class="control-label" for="email">E-mail</label>
-					<div class="controls">
-						<input type="email" placeholder="hong@abc.com" name="email">
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="email">E-mail</label>
+					<div class="col-sm-3">
+						<input type="email" class="form-control" placeholder="hong@abc.com" name="email">
 					</div>
 				</div>
 
-				<div class="control-group">
-					<label class="control-label">Country</label>
-					<div class="controls">
-						<select name="country">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Country</label>
+					<div class="col-sm-3">
+						<select name="country" class="form-control">
 							<option value="KR">Korea</option>
 							<option value="US">USA</option>
 							<option value="JA">Japan</option>
@@ -76,21 +76,23 @@
 					</div>
 				</div>
 
-				<div class="control-group">
-					<label class="control-label">Gender</label>
-					<div class="controls">
-						<label class="radio"> 
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Gender</label>
+					<div class="col-sm-offset-2 radio">
+						<label> 
 						  <input type="radio" value="m" name="gender" checked="checked"> male
 						</label> 
-						<label class="radio"> 
+					</div>
+					<div class="col-sm-offset-2 radio">
+						<label> 
 						  <input type="radio" value="f"	name="gender"> female
 						</label>
 					</div>
 				</div>
 
-				<div class="control-group">
-					<label class="control-label">Favorites</label>
-					<div class="controls">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Favorites</label>
+					<div class="col-sm-offset-2 checkbox">
 						<label class="checkbox"> 
 						  <input type="checkbox" name="favorites" value="IU"> IU
 						</label> 
@@ -109,17 +111,17 @@
 					</div>
 				</div>
 
-				<div class="control-group">
-					<label class="control-label">Memo</label>
-					<div class="controls">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Memo</label>
+					<div class="col-sm-3">
 						<div class="textarea">
 							<textarea name="memo"></textarea>
 						</div>
 					</div>
 				</div>
 
-				<div class="form-actions">
-					<input type="submit" class="btn btn-primary">
+				<div class="form-group">
+					<input type="submit" class="col-sm-offset-2 btn btn-default btn-primary">
 				</div>
 			</fieldset>
 		  </form>

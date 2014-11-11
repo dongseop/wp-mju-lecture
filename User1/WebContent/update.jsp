@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.sql.*" import="java.util.*" 
-    import="org.apache.commons.lang3.StringUtils"%>
+	pageEncoding="UTF-8" import="java.sql.*" import="java.util.*"
+	import="org.apache.commons.lang3.StringUtils"%>
 <%
 	// DB 접속을 위한 준비
 	Connection conn = null;
@@ -70,43 +70,43 @@
 			if (conn != null) try{conn.close();} catch(SQLException e) {}
 		}
 	}
-%>    
+%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>회원목록</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/base.css" rel="stylesheet">
-	<script src="js/jquery-1.8.2.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+<title>회원목록</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/base.css" rel="stylesheet">
+<script src="js/jquery-1.8.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<jsp:include page="share/header.jsp">
-  <jsp:param name="current" value="Sign Up"/>
-</jsp:include>
+	<jsp:include page="share/header.jsp">
+		<jsp:param name="current" value="Sign Up" />
+	</jsp:include>
 
- 	<div class="container">
- 		<% if (errorMsgs.size() > 0) { %>
- 			<div class="alert alert-danger">
- 				<h3>Errors:</h3>
- 				<ul>
- 					<% for(String msg: errorMsgs) { %>
- 						<li><%=msg %></li>
- 					<% } %>
- 				</ul>
- 			</div>
-		 	<div class="form-group">
-		 		<a onclick="history.back();" class="btn btn-default">뒤로 돌아가기</a>
-		 	</div>
-	 	<% } else if (result == 1) { %>
-	 		<div class="alert alert-success">
-	 			<b><%= name %></b>님 정보가 수정되었습니다.
-	 		</div>
-		 	<div class="form-group">
-		 		<a href="index.jsp" class="btn btn-default">목록으로</a>
-		 	</div>
-	 	<%}%>
- 	</div>
+	<div class="container">
+		<% if (errorMsgs.size() > 0) { %>
+		<div class="alert alert-danger">
+			<h3>Errors:</h3>
+			<ul>
+				<% for(String msg: errorMsgs) { %>
+				<li><%=msg %></li>
+				<% } %>
+			</ul>
+		</div>
+		<div class="form-group">
+			<a onclick="history.back();" class="btn btn-default">뒤로 돌아가기</a>
+		</div>
+		<% } else if (result == 1) { %>
+		<div class="alert alert-success">
+			<b><%= name %></b>님 정보가 수정되었습니다.
+		</div>
+		<div class="form-group">
+			<a href="index.jsp" class="btn btn-default">목록으로</a>
+		</div>
+		<%}%>
+	</div>
 </body>
 </html>

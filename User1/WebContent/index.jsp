@@ -108,10 +108,10 @@
 					<td><%=rs.getString("email")%></td>
 					<td><%=gender%></td>
 					<td><%=rs.getString("country")%></td>
-					<td>
-						<a href="signup.jsp?id=<%=rs.getInt("id")%>" class="btn btn-xs">modify</a> 
-						<a href="#" class="btn btn-xs btn-danger" data-action="delete" data-id="<%=rs.getInt("id")%>">delete</a>
-						</td>
+					<td><a href="signup.jsp?id=<%=rs.getInt("id")%>"
+						class="btn btn-xs">modify</a> <a href="#"
+						class="btn btn-xs btn-danger" data-action="delete"
+						data-id="<%=rs.getInt("id")%>">delete</a></td>
 				</tr>
 				<%
 					}
